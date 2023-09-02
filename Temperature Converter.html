@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Temperature Converter</title>
+    
+    <!-- Title_Logo -->
+    <link rel="icon" 
+        type="image/png" 
+        href="Images/logo.png">
+   
+    <!-- CSS -->
+    <style>
+        h1 {
+            margin-top: 1px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            display: block;
+            height: 40px;
+            width: 50%;
+            border-radius: 5px;
+            text-align: center;
+            background-color: rgb(252, 233, 233);
+        }
+
+        form {
+            height: 480px;
+            width: 450px;
+            color: blanchedalmond;
+            background-color: rgba(255, 255, 255, 0.13);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 20px 35px 50px;
+
+
+        }
+
+
+        body {
+            margin-top: 20px;
+            background-image: url('Images/bgimg.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        font {
+            font-family: SF Pro Display;
+        }
+
+        input[type=button] {
+            font-family: SF Pro Display;
+            font-weight: bold;
+            font-size: 15px;
+            font-style: italic;
+            border-radius: 20px;
+            border: none;
+        }
+
+        input[type=button]:hover {
+            background: #b86ee9;
+            color: #050801;
+            box-shadow: 0 0 5px #b86ee9,
+                0 0 25px#b86ee9,
+                0 0 150px #b86ee9;
+        }
+
+        select {
+            border-radius: 10px;
+            padding: 10px;
+            display: block;
+            height: 40px;
+            width: 50%;
+            background-color: rgb(252, 233, 233);
+
+        }
+
+        .footer {
+            background: rgb(53, 53, 53);
+            color: white;
+            /*text-align: center;*/
+            width: 100%;
+            height: 20px;
+            bottom: 0px;
+            position: fixed;
+            left: 0px;
+            padding-top: 5px;
+        }
+
+        left {
+            position: absolute;
+            left: 5px;
+        }
+
+        right {
+            position: absolute;
+            right: 5px;
+        }
+       
+    </style>
+</head>
+
+<body>
+
+    <!-- Form -->
+    <form name="conv">
+        <center>
+            <h1>
+                <i>
+                    <font>Temperature Converter</font>
+                </i>
+            </h1>
+            <font>
+                <h3><b>Enter Temperature Value </h3><input type="number" name="number1" />
+            </font>
+            <br>
+            <font>
+                <h3>Current Temperature Unit</h3>
+            </font>
+            <select name="entunit">
+                <option value="1">Celsius</option>
+                <option value="2">Fahrenheit</option>
+                <option value="3">Kelvin</option>
+            </select></b>
+            <br>
+            <h3>
+                <font><b>Convert To Temperature Unit </font>
+            </h3>
+            <select name="conunit">
+                <option value="1">Celsius</option>
+                <option value="2">Fahrenheit</option>
+                <option value="3">Kelvin</option>
+            </select></b>
+            <br><br>
+            <input type="button" name="button" value="Convert" onclick="conval()" />
+            <br>
+            <h3>
+                <font><b>Converted Value</b></font>
+            </h3>
+            <input type="number" name="dis" readonly="readonly" />
+            <br>
+        </center>
+    </form><br>
+
+    <!-- Footer -->
+    <div class="footer">
+        <font color=grey>
+            <left>Developed By - <b><i>Siddhesh K.</i></b></left>
+            <right>Email- kamblesiddhesh09@gmail.com</right>
+        </font>
+    </div>
+
+    <!-- Javascript to convert values. -->
+    <script type="text/javascript">
+        function conval() {
+            var num, res, ch1, ch2;
+
+            num = Number(document.conv.number1.value);
+            ch1 = Number(document.conv.entunit.value);
+            ch2 = Number(document.conv.conunit.value);
+
+            if (ch1 != ch2) {
+                if (ch1 == 1 && ch2 == 2) {
+                    res = (num * 9 / 5) + 32;
+                }
+                else if (ch1 == 1 && ch2 == 3) {
+                    res = num + 273.15;
+                }
+                else if (ch1 == 2 && ch2 == 1) {
+                    res = (num - 32) * 5 / 9;
+                }
+                else if (ch1 == 2 && ch2 == 3) {
+                    res = (num - 32) / 1.8 + 273.15;
+                }
+                else if (ch1 == 3 && ch2 == 1) {
+                    res = num - 273.15;
+                }
+                else {
+                    res = num * 1.8 - 459.67;
+                }
+
+            }
+            else {
+                res = num
+            }
+
+            document.conv.dis.value = res;
+        }
+    </script>
+</body>
+</html>
